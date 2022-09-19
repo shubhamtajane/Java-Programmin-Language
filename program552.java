@@ -1,0 +1,39 @@
+import java.lang.*;
+import java.util.*;
+
+class program552
+{
+  public static void main(String arg[])
+  {
+    Scanner sobj=new Scanner(System.in);
+	System.out.println("Enter String");
+	String str=sobj.nextLine();
+	char Arr[]=str.toCharArray();
+	
+	Pattern pobj=new Pattern();
+	pobj.Display(Arr);
+   }
+}
+
+class Pattern
+{
+  public void Display(char Brr[])
+  {
+    int i=0,j=0;
+    for(i=Brr.length;i>=0;i--)
+	{
+	  for(j=0;j<Brr.length;j++)
+	  {
+	    if(i<=j)
+		{
+		System.out.print("*"+" ");
+	    }
+		else
+		{
+		  System.out.print(Brr[j]+" ");
+		}
+	  }
+	  System.out.println();
+	}
+  }
+}
