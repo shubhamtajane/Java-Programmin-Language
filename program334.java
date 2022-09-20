@@ -1,53 +1,69 @@
 import java.lang.*;
 import java.util.*;
+import MarvellousMatrix.Matrix;
+
+class MyMatrix extends Matrix
+{
+        public MyMatrix(int a, int b)
+        {
+            super(a,b);
+        }
+
+        public int Maximum()
+        {
+            int iMax = Arr[0][0];
+
+            for(int i = 0; i < iRow; i++)
+            {
+                for(int j =0; j< iCol; j++)
+                {
+                    if(Arr[i][j] > iMax)
+                    {
+                        iMax = Arr[i][j];
+                    }
+                }
+            }
+            return iMax;
+        }
+
+        public int Minimum()
+        {
+            int iMin = Arr[0][0];
+
+            for(int i = 0; i < iRow; i++)
+            {
+                for(int j =0; j< iCol; j++)
+                {
+                    if(Arr[i][j] < iMin)
+                    {
+                        iMin = Arr[i][j];
+                    }
+                }
+            }
+            return iMin;
+        }
+}
 
 class program334
 {
     public static void main(String arg[])
     {
-        Scanner sobj = new Scanner(System.in);  // 9th July
+        Scanner sobj = new Scanner(System.in);
 
-        System.out.println("Enter number ");
-        int No = sobj.nextInt();
-        
-		System.out.println("Enter position1 ");
-        int Pos1 = sobj.nextInt();
+        System.out.println("Enter number of rows");
+        int X = sobj.nextInt();
 
-		System.out.println("Enter position2 ");
-        int Pos2 = sobj.nextInt();
+        System.out.println("Enter number of columns");
+        int Y = sobj.nextInt();
 
-        Bitwise bobj = new Bitwise();
-        boolean iRet = bobj.ChkBit(No,Pos1,Pos2);
-		
-        if(iRet==true)
-		{
-		  System.out.println("TRUE");
-		 }
-		 else
-		 {
-		  System.out.println("False");
-		 }
+        MyMatrix mobj  = new MyMatrix(X,Y);
+        mobj.Accept();
+        mobj.Display();
+
+        int iRet = mobj.Maximum();
+        System.out.println("Maximum element is : "+iRet);
+
+        iRet = mobj.Minimum();
+        System.out.println("Minimum element is : "+iRet);
     }
 }
-
-
-class Bitwise      
-{
-        public boolean ChkBit(int iNo,int iPos1,int iPos2)
-        {
-            int iMask = 0X00000001;
-            int iResult = 0;
- 
-            iMask=iMask<<((iPos1-1)|(iPos2-1));
-            iResult = iNo ^ iMask;
-			if(iResult==0)
-			{
-			 return false;
-			 }
-			 else
-			 {
-			  return true;
-			 }
-        }
-}
-

@@ -1,31 +1,29 @@
-import java.lang.*;
+import java.io.*;
 import java.util.*;
 
-class program3
+class program313
 {
-  public static void main(String arg[])
-  {
-   Scanner sobj=new Scanner(System.in);
-   
-   System.out.println("Enter Number");
-    int Value=sobj.nextInt();
-	
-	Bitwise bobj=new Bitwise();
-	 int iRet=bobj.ToggleBit(Value);
-	 System.out.println("Updated Number is : "+iRet);
-   }
- }
- 
- class Bitwise
- {
-   public int ToggleBit(int iNo)
-   {
-   int iMask=0X00000040;
-   int iResult=0;
-   
-   iResult=iNo^iMask;
-   
-   
-   return iResult;
- }
- }
+    public static void main(String arg[])
+    {
+            Scanner sobj = new Scanner(System.in);
+
+            System.out.println("Enter the string : ");
+            String str = sobj.nextLine();
+
+            str = str.toLowerCase();
+
+            char arr[] = str.toCharArray();
+            int Frequency[] = new int[26];
+            int i = 0;
+
+            for(i = 0; i < arr.length; i++)
+            {
+                Frequency[arr[i] - 'a']++;
+            }
+
+           for(i = 0; i < Frequency.length; i++)
+           {
+                System.out.println(Frequency[i]);
+           }
+      }
+}

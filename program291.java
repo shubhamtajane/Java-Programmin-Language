@@ -1,58 +1,48 @@
 import java.lang.*;
 import java.util.*;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+
 class program291
 {
     public static void main(String arg[])
     {
-        Scanner sobj = new Scanner(System.in);  // 9th July
-
-        System.out.println("Enter number ");
-        int value = sobj.nextInt();
-
-        Bitwise bobj = new Bitwise();
-        boolean bret = bobj.CheckBit(value);
-
-        if(bret == true)
+        try
         {
-            System.out.println("Bit is on");
+            Scanner sobj = new Scanner(System.in);
+
+            System.out.println("Please enter existing file name");
+            String Filename= sobj.nextLine();
+
+            File fobj=new File(Filename);
+
+            System.out.println("Enter new file name to create");
+            String newfile = sobj.nextLine();
+
+            File fobjnew=new File(newfile);
+            boolean bobj1 = fobjnew.createNewFile();
+
+            if(fobj.exists())
+            {
+                    FileInputStream fiobj = new FileInputStream(fobj);
+                    FileOutputStream foobj = new FileOutputStream(fobjnew);
+
+                    byte buffer[] = new byte[100];
+                    int ret = 0;
+
+                    while((ret = fiobj.read(buffer)) != -1)
+                    {
+                            foobj.write(buffer,0,ret);
+                    }
+            }
+            else
+            {
+                System.out.println("There is no such file");
+            }
         }
-        else
+        catch(IOException obj)
         {
-            System.out.println("Bit is off");
+            System.out.println(obj);
         }
     }
 }
-
-class Bitwise
-{
-    public boolean CheckBit(int iNo)
-    {
-        int iMask = 16384;
-        int iResult = 0;
-
-        iResult = iNo & iMask;
-
-        if(iResult == 0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-

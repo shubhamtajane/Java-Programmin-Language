@@ -1,35 +1,38 @@
-import java.lang.*;
+import java.io.*;
 import java.util.*;
 
 class program324
 {
-  public static void main(String arg[])
-  {
-   Scanner sobj=new Scanner(System.in);
-   
-   System.out.println("Enter Number");
-    int iValue1=sobj.nextInt();
-	
-	System.out.println("Enter Position");
-	int iValue2=sobj.nextInt();
-	
-	Bitwise bobj=new Bitwise();
-	int bRet=bobj.ToggleBit(iValue1,iValue2);
-	
-    System.out.println("Updated Number is:"+bRet);
-	 }
+    public static void main(String arg[])
+    {
+            int i =0, j = 0, iSum = 0;
+           Scanner sobj = new Scanner(System.in);
+
+           System.out.println("Enter number of rows");
+           int irow = sobj.nextInt();
+
+           System.out.println("Enter number of columns");
+           int icol = sobj.nextInt();
+
+           int Arr[][] = new int[irow][icol];
+
+           System.out.println("Enter the elements");
+           for(i = 0; i < Arr.length; i++)
+           {
+                for(j = 0; j < Arr[i].length; j++)
+                {
+                    Arr[i][j] = sobj.nextInt();
+                }
+           }
+
+           for(i = 0; i < Arr.length; i++)
+           {
+                for(j = 0; j < Arr[i].length; j++)
+                {
+                        iSum = iSum + Arr[i][j];
+                }
+           }
+
+           System.out.println("Addition is : "+iSum);
+     }
 }
-	 
-	 class Bitwise
-	 {
-	   public int ToggleBit(int iNo,int iPos)
-	   {
-	    int iMask=0X00000001;
-		
-		int iResult=0;
-		
-		iMask=iMask<<(iPos-1);
-		iResult=iNo^iMask;
-		return iResult;
-	   }
-		}

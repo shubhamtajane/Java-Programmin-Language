@@ -1,45 +1,61 @@
 import java.lang.*;
 import java.util.*;
+import java.io.*;
 
 class program295
 {
-  public static void main(String arg[])
-  { 
-    Scanner sobj=new Scanner(System.in);
-	
-	System.out.println("Enter Number");
-	int Value=sobj.nextInt();
-	
-	Bitwise bobj=new Bitwise();
-	boolean bRet=bobj.ChkBit(Value);
-	
-    if(bRet==true)
-	{
-	 System.out.println("Bit is On");
-	 }
-	 else
-	{
-	  System.out.println("Bit is Off");
-	}
-  }
-}
+    public static void main(String arg[])
+    {
+        try
+        {
+            Scanner sobj = new Scanner(System.in);
 
-class Bitwise
-{
-  public boolean ChkBit(int iNo)
-  {
-    int iMask=0X80000001;
-	int iResult=0;
-	
-	iResult=iNo&iMask;
-	
-	if(iResult==0)
-	{
-	  return false;
-	}
-	else
-	{
-	 return true;
-	}
-  }
+            System.out.println("Please direcory / folder name");
+            String foldername= sobj.nextLine();
+
+            File dobj = new File(foldername);
+
+            File allfiles[] = dobj.listFiles();
+            String name;
+
+            File fobj=new File("Combine.txt");
+            boolean bobj = fobj.createNewFile();
+            FileOutputStream writerobj = new FileOutputStream(fobj);
+
+            FileInputStream readerobj = null;
+            int ret = 0;
+            byte buffer[] = new byte[100];
+
+            for(int i = 0; i < allfiles.length; i++)
+            {
+                    name = allfiles[i].getName();
+
+                    if(name.endsWith(".txt"))
+                    {
+                        name = name +" "+(allfiles[i].length());
+
+                        for(int j = name.length(); j<100; j++)
+                        {
+                            name = name + " ";
+                        }
+
+                        byte namearray[] = name.getBytes();
+                        writerobj.write(namearray,0,namearray.length);
+
+                        readerobj = new FileInputStream(allfiles[i]);
+
+                        while((ret = readerobj.read(buffer)) != -1)
+                        {
+                                writerobj.write(buffer,0,ret);
+                        }
+                        readerobj.close();
+                    }
+            }
+        }
+        catch(Exception obj)
+        {
+            System.out.println(obj);
+        }
+
+    }
 }

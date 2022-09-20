@@ -1,46 +1,31 @@
 import java.lang.*;
 import java.util.*;
+import java.io.*;
 
 class program292
 {
-  public static void main(String arg[])
-  {
-    Scanner sobj=new Scanner(System.in);
-	
-	System.out.println("Enter Number");
-	int Value=sobj.nextInt();
-	
-	Bitwise bobj=new Bitwise();
-	boolean bRet=bobj.ChkBit(Value);
-	
-	if(bRet==true)
-	{
-	  System.out.println("Bit is on");
-	}
-	else
+    public static void main(String arg[])
     {
-	  System.out.println("Bit is off");
-	}
-}
+        try
+        {
+            Scanner sobj = new Scanner(System.in);
 
-}
+            System.out.println("Please direcory / folder name");
+            String foldername= sobj.nextLine();
 
-class Bitwise
-{
-  public boolean ChkBit(int iNo)
-  {
-    int iMask=0X00020010;
-	int iResult=0;
-	
-	iResult=iNo & iMask;
-	
-	if(iResult==0)
-	{
-	 return false;
-	}
-	else
-	{
-	 return true;
-	}
-  }
- }
+            File dobj = new File(foldername);
+
+            File allfiles[] = dobj.listFiles();
+
+            for(int i = 0; i < allfiles.length; i++)
+            {
+                    System.out.println(allfiles[i].getName());
+            }
+        }
+        catch(Exception obj)
+        {
+
+        }
+
+    }
+}
